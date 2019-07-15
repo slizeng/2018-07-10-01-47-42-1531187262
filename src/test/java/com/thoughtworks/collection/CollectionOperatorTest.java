@@ -54,7 +54,7 @@ public class CollectionOperatorTest {
 
         CollectionOperator collectionOperator = new CollectionOperator();
 
-        assertThat(collectionOperator.popEvenElments(array)).isEqualTo(resultList);
+        assertThat(collectionOperator.popEvenElements(array)).isEqualTo(resultList);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class CollectionOperatorTest {
 
         CollectionOperator collectionOperator = new CollectionOperator();
 
-        assertThat(collectionOperator.popLastElment(array)).isEqualTo(5);
+        assertThat(collectionOperator.popLastElement(array)).isEqualTo(5);
     }
 
     @Test

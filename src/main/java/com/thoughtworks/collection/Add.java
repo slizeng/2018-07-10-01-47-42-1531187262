@@ -95,7 +95,7 @@ public class Add {
         return null;
     }
 
-    private List<Integer> orderBorders(int firstBorder, int secondBorder) {
+    public static List<Integer> orderBorders(int firstBorder, int secondBorder) {
         int startBorder = firstBorder < secondBorder ? firstBorder : secondBorder;
         int endBorder = firstBorder < secondBorder ? secondBorder : firstBorder;
 
