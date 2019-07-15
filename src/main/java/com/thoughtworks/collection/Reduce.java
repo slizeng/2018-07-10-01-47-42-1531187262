@@ -1,8 +1,11 @@
 package com.thoughtworks.collection;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-import java.util.List;
+import static java.lang.Double.valueOf;
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
 
 public class Reduce {
 
@@ -13,42 +16,92 @@ public class Reduce {
     }
 
     public int getMaximum() {
-        throw new NotImplementedException();
+        Optional<Integer> optionalResult = arrayList.stream().max(Comparator.comparingInt(a -> a));
+        if (optionalResult.isPresent()) {
+            return optionalResult.get();
+        } else throw new NoSuchElementException();
     }
 
     public double getMinimum() {
-        throw new NotImplementedException();
+        Optional<Integer> optionalResult = arrayList.stream().min(Comparator.comparingInt(a -> a));
+        if (optionalResult.isPresent()) {
+            return optionalResult.get();
+        } else throw new NoSuchElementException();
     }
 
     public double getAverage() {
-        throw new NotImplementedException();
+        return arrayList.stream().collect(Collectors.averagingInt(a -> (int) a));
     }
 
     public double getOrderedMedian() {
-        throw new NotImplementedException();
+        if (isEmpty(arrayList)) {
+            throw new NoSuchElementException();
+        }
+
+        int size = arrayList.size();
+        if (size % 2 == 0) {
+            return (double) (arrayList.get(size / 2 - 1) + arrayList.get(size / 2)) / 2;
+        } else {
+            return arrayList.get(size / 2);
+        }
     }
 
     public int getFirstEven() {
-        throw new NotImplementedException();
+        Optional<Integer> optionalResult = arrayList.stream()
+                .filter(element -> element % 2 == 0)
+                .findFirst();
+
+        if (optionalResult.isPresent()) {
+            return optionalResult.get();
+        } else {
+            throw new NoSuchElementException();
+        }
     }
 
     public int getIndexOfFirstEven() {
-        throw new NotImplementedException();
+        OptionalInt optionalResult = IntStream.range(0, arrayList.size())
+                .filter(index -> arrayList.get(index) % 2 == 0)
+                .findFirst();
+
+        if (optionalResult.isPresent()) {
+            return optionalResult.getAsInt();
+        } else {
+            throw new NoSuchElementException();
+        }
     }
 
     public boolean isEqual(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        return arrayList.toString().equals(this.arrayList.toString());
     }
 
     public Double getMedianInLinkList(SingleLink singleLink) {
-        throw new NotImplementedException();
+        int arraySize = arrayList.size();
+        if (arraySize % 2 == 0) {
+            return (double) ((Integer) singleLink.getNode(arraySize / 2)
+                    + (Integer) singleLink.getNode(arraySize / 2 + 1)) / 2;
+        }
+
+        return valueOf(singleLink.getNode(arraySize / 2 + 1).toString());
     }
 
     public int getLastOdd() {
-        throw new NotImplementedException();
+        Optional<Integer> optionalResult = arrayList.stream()
+                .filter(element -> element % 2 == 1)
+                .reduce((a, b) -> b);
+
+        if (optionalResult.isPresent()) {
+            return optionalResult.get();
+        } else throw new NoSuchElementException();
     }
 
     public int getIndexOfLastOdd() {
-        throw new NotImplementedException();
+        Optional<Integer> optionalResult = IntStream.range(0, arrayList.size())
+                .boxed()
+                .filter(index -> arrayList.get(index) % 2 == 1)
+                .reduce((a, b) -> b);
+
+        if (optionalResult.isPresent()) {
+            return optionalResult.get();
+        } else throw new NoSuchElementException();
     }
 }

@@ -1,20 +1,23 @@
 package com.thoughtworks.collection;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static com.sun.tools.javac.util.List.of;
-import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.*;
 
 public class Add {
+    public static List<Integer> orderBorders(int firstBorder, int secondBorder) {
+        int startBorder = firstBorder < secondBorder ? firstBorder : secondBorder;
+        int endBorder = firstBorder < secondBorder ? secondBorder : firstBorder;
+
+        return of(startBorder, endBorder);
+    }
+
     public int getSumOfEvens(int leftBorder, int rightBorder) {
         List<Integer> borders = orderBorders(leftBorder, rightBorder);
 
@@ -90,15 +93,10 @@ public class Add {
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
-        Integer previousValue = null;
-
-        return null;
-    }
-
-    public static List<Integer> orderBorders(int firstBorder, int secondBorder) {
-        int startBorder = firstBorder < secondBorder ? firstBorder : secondBorder;
-        int endBorder = firstBorder < secondBorder ? secondBorder : firstBorder;
-
-        return of(startBorder, endBorder);
+        return IntStream.range(0, arrayList.size() - 1)
+                .boxed()
+                .map(index -> arrayList.get(index) + arrayList.get(index + 1))
+                .map(sum -> sum * 3)
+                .collect(toList());
     }
 }
