@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static com.sun.tools.javac.util.List.of;
+import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.*;
 
 public class Add {
@@ -15,7 +15,7 @@ public class Add {
         int startBorder = firstBorder < secondBorder ? firstBorder : secondBorder;
         int endBorder = firstBorder < secondBorder ? secondBorder : firstBorder;
 
-        return of(startBorder, endBorder);
+        return asList(startBorder, endBorder);
     }
 
     public int getSumOfEvens(int leftBorder, int rightBorder) {
