@@ -67,6 +67,7 @@ public class AddTest {
     }
 
     @Test
+    //TODO: need to be considered more.
     public void should_process_elements() {
         // 数组中前一个元素和后一个元素的和的3倍的数组
         Integer[] array = new Integer[]{1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21};
@@ -87,7 +88,7 @@ public class AddTest {
         List<Integer> arrayList = Arrays.asList(array);
 
         Add add = new Add();
-        assertThat(add.getMedianOfEven(arrayList)).isEqualTo((double) 3);
+        assertThat(add.getMedianOfEven(arrayList)).isEqualTo((double) 2);
     }
 
     @Test
@@ -102,17 +103,17 @@ public class AddTest {
 
     @Test
     public void should_return_whether_include_special_element() {
-        // 求数组中所有偶数组成的数组是否包含某特定的数specialElment
+        // 求数组中所有偶数组成的数组是否包含某特定的数specialElement
         Integer[] array = new Integer[]{1, 2, 3, 4, 5};
         List<Integer> arrayList = Arrays.asList(array);
 
         Add add = new Add();
 
-        Integer existedElment = 3;
-        assertThat(add.isIncludedInEvenIndex(arrayList, existedElment)).isEqualTo(false);
+        Integer existedElement = 3;
+        assertThat(add.isIncludedInEvenIndex(arrayList, existedElement)).isEqualTo(false);
 
-        Integer unexistedElment = 2;
-        assertThat(add.isIncludedInEvenIndex(arrayList, unexistedElment)).isEqualTo(true);
+        Integer nonexistedElement = 2;
+        assertThat(add.isIncludedInEvenIndex(arrayList, nonexistedElement)).isEqualTo(true);
     }
 
     @Test
